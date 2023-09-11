@@ -1,0 +1,44 @@
+import jwt
+
+# Your payload data (this is the data you want to include in the JWT)
+payload = {
+    "user_id": 123,
+    "username": "example_user"
+}
+
+# Your secret key to sign the JWT (keep this secret!)
+secret_key = "your_secret_key"
+
+# Encode the payload into a JWT
+token = jwt.encode(payload, secret_key, algorithm='HS256')
+
+print(token)
+
+#Decoding and Verifying JWT
+import jwt
+
+# The JWT you want to decode and verify
+token = "your_jwt_token_here"
+
+# Your secret key (must match the one used to create the JWT)
+secret_key = "your_secret_key"
+
+try:
+    # Decode and verify the JWT
+    payload = jwt.decode(token, secret_key, algorithms=['HS256'])
+    print(payload)
+except jwt.ExpiredSignatureError:
+    print("Token has expired")
+except jwt.DecodeError:
+    print("Token decoding failed")
+
+#Adding custom claims in a JWT payload
+{
+  "sub": "1234567890",
+  "username": "john_doe",
+  "role": "admin",
+  "custom_data": {
+    "account_type": "premium",
+    "is_verified": true
+  }
+}
